@@ -1,157 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Md. Asikur Rahman — Software Developer | C# .NET &amp; ASP.NET Core</title>
+<title>Md. Asikur Rahman — Software Developer</title>
 <meta name="description" content="Software developer specialising in C# .NET, Windows Forms and ASP.NET Core. Building and maintaining hospital, diagnostic and pharmacy management systems for 13+ live client installations in Bangladesh.">
 <meta name="author" content="Md. Asikur Rahman">
+<meta name="theme-color" content="#0B2942">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Md. Asikur Rahman — Software Developer">
-<meta property="og:description" content="C# .NET · Windows Forms · ASP.NET Core · MS SQL Server. Healthcare management systems delivered across Bangladesh.">
+<meta property="og:description" content="C# .NET · Windows Forms · ASP.NET Core · MS SQL Server. Healthcare systems running in 13+ hospitals across Bangladesh.">
 <meta property="og:image" content="assets/img/asikur.jpg">
 
 <link rel="icon" href="assets/img/asikur.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+
+<script>
+  // Apply the saved theme before first paint so the page never flashes.
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
-<!-- ======================= HEADER ======================= -->
-<header class="site-header" id="header">
-  <div class="wrap header-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark">AR</span>
-      <span class="brand-text">Md. Asikur Rahman</span>
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="header">
+  <div class="shell header-in">
+    <a class="brand" href="#top" aria-label="Home">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">Asikur<span>.</span></span>
     </a>
 
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="nav" id="navMenu" aria-label="Main">
+    <nav class="nav" id="nav" aria-label="Main">
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about"><span class="n">01</span>About</a></li>
+        <li><a href="#skills"><span class="n">02</span>Skills</a></li>
+        <li><a href="#work"><span class="n">03</span>Experience</a></li>
+        <li><a href="#projects"><span class="n">04</span>Projects</a></li>
+        <li><a href="#clients"><span class="n">05</span>Clients</a></li>
+        <li><a href="#contact"><span class="n">06</span>Contact</a></li>
       </ul>
     </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch colour theme">
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ======================= HERO ======================= -->
+<!-- ============================ HERO ============================ -->
 <section class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="wrap hero-inner">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="shell hero-in">
 
-    <div class="hero-text">
-      <p class="eyebrow">Software Developer &nbsp;·&nbsp; Dhaka, Bangladesh</p>
-      <h1>Md. Asikur&nbsp;Rahman</h1>
-      <p class="hero-role">C#&nbsp;.NET &nbsp;·&nbsp; Windows Forms &nbsp;·&nbsp; ASP.NET&nbsp;Core &nbsp;·&nbsp; MS SQL&nbsp;Server</p>
-      <p class="hero-lede">
-        I build and maintain healthcare management systems that run every day in real
-        hospitals — diagnostic, hospital and pharmacy modules delivered to
-        <strong>13+ live client installations</strong> across Bangladesh.
+    <div class="hero-copy">
+      <p class="status"><span class="pulse" aria-hidden="true"></span>Open to new opportunities</p>
+
+      <h1 class="display">
+        Md.&nbsp;Asikur<br><span class="grad">Rahman</span>
+      </h1>
+
+      <p class="hero-role">
+        <span>Software Developer</span>
+        <em>//</em>
+        <span>C#&nbsp;.NET · ASP.NET&nbsp;Core · MS&nbsp;SQL&nbsp;Server</span>
       </p>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">View my work</a>
-        <a class="btn btn-ghost" href="assets/files/Md_Asikur_Rahman_CV.pdf" target="_blank" rel="noopener">
-          Download CV (PDF)
+      <p class="hero-lede">
+        I build the software that hospitals actually run on. Diagnostic, hospital and
+        pharmacy modules in C#&nbsp;.NET — shipped, deployed and supported across
+        <strong>13+ live installations</strong> in Bangladesh.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#projects">
+          See the work
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-line" href="assets/files/Md_Asikur_Rahman_CV.pdf" target="_blank" rel="noopener">
+          Download CV
         </a>
       </div>
 
-      <ul class="hero-links">
+      <ul class="hero-meta">
         <li><a href="https://github.com/asikatm" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/asikur-rahman-895bba298/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:asikatm2@gmail.com">asikatm2@gmail.com</a></li>
+        <li><a href="mailto:asikatm2@gmail.com">Email</a></li>
+        <li><span>Dhaka, BD</span></li>
       </ul>
     </div>
 
-    <div class="hero-photo">
-      <img src="assets/img/asikur.jpg" alt="Portrait of Md. Asikur Rahman" width="320" height="320">
+    <div class="hero-visual">
+      <div class="avatar">
+        <img src="assets/img/asikur.jpg" alt="Md. Asikur Rahman" width="340" height="340">
+      </div>
+      <dl class="figures">
+        <div><dt>13+</dt><dd>Hospitals live</dd></div>
+        <div><dt>7</dt><dd>Public repos</dd></div>
+        <div><dt>40+</dt><dd>URI solved</dd></div>
+      </dl>
     </div>
 
   </div>
 </section>
 
-<!-- ======================= ABOUT ======================= -->
-<section class="section" id="about">
-  <div class="wrap">
-    <p class="section-kicker">01 — About</p>
-    <h2 class="section-title">Profile</h2>
+<!-- ============================ ABOUT ============================ -->
+<section class="band" id="about">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag"><span class="n">01</span>About</p>
+      <h2>Building for people who can’t afford downtime</h2>
+    </header>
 
-    <div class="about-grid">
-      <div class="about-copy reveal">
+    <div class="about">
+      <div class="prose reveal">
         <p>
-          Software developer with hands-on experience building and maintaining healthcare
-          management systems in C#&nbsp;.NET. I currently work on the E-Medical product suite —
-          Windows Forms based diagnostic, hospital and pharmacy modules backed by MS SQL Server —
-          customising, publishing and supporting a separate build for each client hospital.
+          I’m a software developer at <strong>E-Medical Solution Ltd.</strong>, working on a
+          Windows&nbsp;Forms product suite that runs the day-to-day of diagnostic centres and
+          hospitals — patient entry, billing, reporting, pharmacy. Each client gets their own
+          build and their own repository, and I customise, publish and support them.
         </p>
         <p>
-          Alongside that I have a solid ASP.NET&nbsp;Core&nbsp;/&nbsp;MVC web development
-          background from the IsDB-BISEW IT Scholarship programme and my own projects. I care
-          about writing clean, maintainable code and shipping software that people can depend on
-          in a busy hospital at 2&nbsp;a.m.
+          Before that I came up through the IsDB-BISEW IT Scholarship programme, which is where
+          my ASP.NET&nbsp;Core and MVC background comes from. I care about code that stays
+          readable six months later, and about software that doesn’t break at 2&nbsp;a.m. when
+          someone is admitting a patient.
         </p>
       </div>
 
-      <ul class="stats reveal">
-        <li><span class="stat-num">13<span class="plus">+</span></span><span class="stat-label">Live client installations</span></li>
-        <li><span class="stat-num">7</span><span class="stat-label">Public side projects</span></li>
-        <li><span class="stat-num">40<span class="plus">+</span></span><span class="stat-label">Problems solved on URI</span></li>
-        <li><span class="stat-num">2025</span><span class="stat-label">Full-time since October</span></li>
+      <ul class="facts reveal">
+        <li><span class="k">Now</span><span class="v">Software Developer, E-Medical Solution Ltd.</span></li>
+        <li><span class="k">Focus</span><span class="v">C# .NET · WinForms · MS SQL Server</span></li>
+        <li><span class="k">Also</span><span class="v">ASP.NET Core / MVC · JavaScript</span></li>
+        <li><span class="k">Based</span><span class="v">Dhaka, Bangladesh</span></li>
+        <li><span class="k">Languages</span><span class="v">Bangla (native) · English (professional)</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ======================= SKILLS ======================= -->
-<section class="section section-alt" id="skills">
-  <div class="wrap">
-    <p class="section-kicker">02 — Toolkit</p>
-    <h2 class="section-title">Technical skills</h2>
+<!-- ============================ SKILLS ============================ -->
+<section class="band band-soft" id="skills">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag"><span class="n">02</span>Skills</p>
+      <h2>The toolkit</h2>
+    </header>
 
-    <div class="cards">
-      <article class="card reveal">
+    <div class="grid-4">
+      <article class="panel reveal">
         <h3>Microsoft &amp; .NET</h3>
-        <ul class="tags">
+        <ul class="chips">
           <li>C#</li><li>.NET Framework</li><li>Windows Forms</li><li>ASP.NET Core</li>
           <li>ASP.NET MVC</li><li>Web API</li><li>Angular</li>
         </ul>
       </article>
-
-      <article class="card reveal">
+      <article class="panel reveal">
         <h3>Database</h3>
-        <ul class="tags">
+        <ul class="chips">
           <li>MS SQL Server</li><li>Stored Procedures</li><li>Triggers</li>
           <li>Functions</li><li>Joins</li><li>CTEs</li>
         </ul>
       </article>
-
-      <article class="card reveal">
+      <article class="panel reveal">
         <h3>Front-end</h3>
-        <ul class="tags">
+        <ul class="chips">
           <li>JavaScript</li><li>jQuery</li><li>AJAX</li><li>JSON</li><li>TypeScript</li>
           <li>HTML5</li><li>CSS3</li><li>Bootstrap</li><li>Node.js</li>
         </ul>
       </article>
-
-      <article class="card reveal">
-        <h3>Tools &amp; workflow</h3>
-        <ul class="tags">
+      <article class="panel reveal">
+        <h3>Workflow</h3>
+        <ul class="chips">
           <li>Visual Studio</li><li>VS Code</li><li>SSMS</li><li>Git</li><li>GitHub</li>
         </ul>
       </article>
@@ -159,249 +197,217 @@
   </div>
 </section>
 
-<!-- ======================= EXPERIENCE ======================= -->
-<section class="section" id="experience">
-  <div class="wrap">
-    <p class="section-kicker">03 — Career</p>
-    <h2 class="section-title">Professional experience</h2>
+<!-- ============================ EXPERIENCE ============================ -->
+<section class="band" id="work">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag"><span class="n">03</span>Experience</p>
+      <h2>Where I’ve worked</h2>
+    </header>
 
-    <ol class="timeline">
+    <ol class="track">
       <li class="reveal">
-        <div class="tl-head">
-          <h3>Software Developer — E-Medical Software</h3>
-          <span class="tl-date">Oct 2025 — Present</span>
+        <p class="when">Oct 2025 — Present</p>
+        <div class="what">
+          <h3>Software Developer <span class="at">E-Medical Solution Ltd.</span></h3>
+          <p class="where">E-Medical Software · Dhaka</p>
+          <ul class="dots">
+            <li>Develop and maintain the E-Medical Windows Forms product suite covering diagnostic, hospital and pharmacy management.</li>
+            <li>Customise, publish and support client-specific builds for 13+ hospitals and diagnostic centres across Bangladesh.</li>
+            <li>Build data-entry screens, billing workflows and printable reports in C#, backed by MS SQL Server queries and stored procedures.</li>
+            <li>Maintain a separate GitHub repository per client, handling releases and hotfixes.</li>
+          </ul>
         </div>
-        <p class="tl-org">E-Medical Solution Ltd. <span>· Dhaka</span></p>
-        <ul class="bullets">
-          <li>Develop and maintain the E-Medical Windows Forms (WinForms) product suite covering diagnostic, hospital and pharmacy management.</li>
-          <li>Customise, publish and support client-specific builds for 13+ hospitals and diagnostic centres across Bangladesh.</li>
-          <li>Build data-entry screens, billing workflows and printable reports in C#, backed by MS SQL Server queries and stored procedures.</li>
-          <li>Maintain a separate GitHub repository per client, handling releases and hotfixes.</li>
-        </ul>
       </li>
 
       <li class="reveal">
-        <div class="tl-head">
-          <h3>Trainee Software Developer</h3>
-          <span class="tl-date">Jun 2025 — Sep 2025</span>
+        <p class="when">Jun 2025 — Sep 2025</p>
+        <div class="what">
+          <h3>Trainee Software Developer <span class="at">E-Group Ltd.</span></h3>
+          <p class="where">Dhaka</p>
+          <ul class="dots">
+            <li>Assisted in developing web applications using ASP.NET Core and MS SQL Server.</li>
+            <li>Participated in code reviews, debugging and testing of live application modules.</li>
+          </ul>
         </div>
-        <p class="tl-org">E-Group Ltd. <span>· Dhaka</span></p>
-        <ul class="bullets">
-          <li>Assisted in developing web applications using ASP.NET Core and MS SQL Server.</li>
-          <li>Participated in code reviews, debugging and testing of live application modules.</li>
-        </ul>
       </li>
 
       <li class="reveal">
-        <div class="tl-head">
-          <h3>Trainee Programmer (Internship)</h3>
-          <span class="tl-date">Sep 2024 — Apr 2025</span>
+        <p class="when">Sep 2024 — Apr 2025</p>
+        <div class="what">
+          <h3>Trainee Programmer <span class="at">US Software Ltd.</span></h3>
+          <p class="where">Internship · IsDB-BISEW IT Scholarship Programme · Dhaka</p>
+          <ul class="dots">
+            <li>Completed intensive training in web application development with Microsoft C#&nbsp;.NET.</li>
+            <li>Built real-time training projects using ASP.NET MVC, MS SQL Server, jQuery and AJAX.</li>
+          </ul>
         </div>
-        <p class="tl-org">US Software Ltd. <span>· Dhaka · IsDB-BISEW IT Scholarship Programme</span></p>
-        <ul class="bullets">
-          <li>Completed intensive training in web application development with Microsoft C#&nbsp;.NET.</li>
-          <li>Built real-time training projects using ASP.NET MVC, MS SQL Server, jQuery and AJAX.</li>
-        </ul>
       </li>
     </ol>
+
+    <div class="edu reveal">
+      <h3 class="edu-head">Education &amp; training</h3>
+      <div class="grid-2">
+        <div class="edu-item">
+          <p class="when">2019 — 2023</p>
+          <h4>Diploma in Engineering</h4>
+          <p class="where">Kurigram Polytechnic Institute · CGPA 3.00 / 4.00</p>
+        </div>
+        <div class="edu-item">
+          <p class="when">2017 — 2019</p>
+          <h4>Secondary School Certificate</h4>
+          <p class="where">Chaperhat Technical &amp; B.M. College · Science · GPA 4.57 / 5.00</p>
+        </div>
+        <div class="edu-item">
+          <p class="when">Sep 2024 — Apr 2025</p>
+          <h4>Web Application Development using ASP.NET</h4>
+          <p class="where">IsDB-BISEW IT Scholarship Programme</p>
+        </div>
+        <div class="edu-item">
+          <p class="when">Aug 2023 — Nov 2023</p>
+          <h4>Web Design and Development</h4>
+          <p class="where">Creative IT Institute, Uttara, Dhaka</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ======================= PROJECTS ======================= -->
-<section class="section section-alt" id="projects">
-  <div class="wrap">
-    <p class="section-kicker">04 — Work</p>
-    <h2 class="section-title">Projects</h2>
-    <p class="section-intro">Open-source side projects, all public on GitHub.</p>
+<!-- ============================ PROJECTS ============================ -->
+<section class="band band-soft" id="projects">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag"><span class="n">04</span>Projects</p>
+      <h2>Things I’ve built</h2>
+      <p class="band-sub">Side projects, all public on GitHub.</p>
+    </header>
 
-    <div class="projects">
+    <div class="grid-3">
 
-      <article class="project reveal">
+      <a class="work reveal" href="https://github.com/asikatm/Vehicle-Workshop" target="_blank" rel="noopener">
+        <span class="work-no">01</span>
         <h3>Vehicle Workshop Management</h3>
         <p>Workshop job-card, servicing and billing management with a responsive admin dashboard.</p>
-        <ul class="tags tags-sm">
-          <li>ASP.NET Core MVC</li><li>MS SQL Server</li><li>JavaScript</li><li>AJAX</li><li>Bootstrap</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Vehicle-Workshop" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+        <ul class="chips chips-mono"><li>ASP.NET Core MVC</li><li>SQL Server</li><li>AJAX</li><li>Bootstrap</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
-        <h3>Student CRUD with Master-Details</h3>
-        <p>Single-page master–detail CRUD with image upload, Bootstrap tab controller and both client-side and server-side validation.</p>
-        <ul class="tags tags-sm">
-          <li>ASP.NET MVC</li><li>MS SQL Server</li><li>jQuery</li><li>AJAX</li><li>JSON</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Student-Management-With-MVC-Crud-Operation-Single-Page" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+      <a class="work reveal" href="https://github.com/asikatm/Student-Management-With-MVC-Crud-Operation-Single-Page" target="_blank" rel="noopener">
+        <span class="work-no">02</span>
+        <h3>Student CRUD — Master/Details</h3>
+        <p>Single-page master–detail CRUD with image upload, Bootstrap tab controller and validation on both sides.</p>
+        <ul class="chips chips-mono"><li>ASP.NET MVC</li><li>SQL Server</li><li>jQuery</li><li>JSON</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
-        <h3>Product CRUD with Master-Details</h3>
+      <a class="work reveal" href="https://github.com/asikatm/DB-First-Master-Details-With-MVC" target="_blank" rel="noopener">
+        <span class="work-no">03</span>
+        <h3>Product CRUD — Master/Details</h3>
         <p>Database-first master–detail insert, update and delete flow with full validation.</p>
-        <ul class="tags tags-sm">
-          <li>ASP.NET Core MVC</li><li>MS SQL Server</li><li>jQuery</li><li>AJAX</li><li>Bootstrap</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/DB-First-Master-Details-With-MVC" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+        <ul class="chips chips-mono"><li>ASP.NET Core MVC</li><li>SQL Server</li><li>AJAX</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
+      <a class="work reveal" href="https://github.com/asikatm/Pharmacy-Management-system-MS-SQL-" target="_blank" rel="noopener">
+        <span class="work-no">04</span>
         <h3>Pharmacy Management System</h3>
-        <p>Relational database design and query layer using triggers, stored procedures, user-defined functions, joins and common table expressions.</p>
-        <ul class="tags tags-sm">
-          <li>MS SQL Server</li><li>T-SQL</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Pharmacy-Management-system-MS-SQL-" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+        <p>Relational design and query layer using triggers, stored procedures, user-defined functions and CTEs.</p>
+        <ul class="chips chips-mono"><li>MS SQL Server</li><li>T-SQL</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
-        <h3>Real-Time Chatting Application</h3>
-        <p>Live two-way chat between browsers with messages persisted on a Node.js server, plus drag-and-drop file sharing and download.</p>
-        <ul class="tags tags-sm">
-          <li>Node.js</li><li>Socket.IO</li><li>JavaScript</li><li>jQuery</li><li>CSS3</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Chatting-Application-Web-Based-Application-" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+      <a class="work reveal" href="https://github.com/asikatm/Chatting-Application-Web-Based-Application-" target="_blank" rel="noopener">
+        <span class="work-no">05</span>
+        <h3>Real-Time Chat Application</h3>
+        <p>Live two-way chat with messages persisted on a Node.js server, plus drag-and-drop file sharing.</p>
+        <ul class="chips chips-mono"><li>Node.js</li><li>Socket.IO</li><li>jQuery</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
-        <h3>Pharmacy Management CRUD (Console)</h3>
-        <p>Object-oriented practice project covering object and generic approaches, interfaces, abstraction and reusable methods.</p>
-        <ul class="tags tags-sm">
-          <li>C#</li><li>OOP</li><li>Visual Studio</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Pharmacy-Management-With-C-" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+      <a class="work reveal" href="https://github.com/asikatm/Pharmacy-Management-With-C-" target="_blank" rel="noopener">
+        <span class="work-no">06</span>
+        <h3>Pharmacy CRUD — Console</h3>
+        <p>Object-oriented practice project covering generics, interfaces, abstraction and reusable methods.</p>
+        <ul class="chips chips-mono"><li>C#</li><li>OOP</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
-      <article class="project reveal">
+      <a class="work reveal" href="https://github.com/asikatm/Student-Registration-Validation-Html-CSS-JavaScrip" target="_blank" rel="noopener">
+        <span class="work-no">07</span>
         <h3>Student Registration Form</h3>
-        <p>Client-side insert, update and delete with form validation and tabular data view.</p>
-        <ul class="tags tags-sm">
-          <li>HTML</li><li>CSS</li><li>JavaScript</li>
-        </ul>
-        <a class="link-out" href="https://github.com/asikatm/Student-Registration-Validation-Html-CSS-JavaScrip" target="_blank" rel="noopener">View on GitHub</a>
-      </article>
+        <p>Client-side insert, update and delete with form validation and a tabular data view.</p>
+        <ul class="chips chips-mono"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        <span class="work-go">View repository <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
 
     </div>
   </div>
 </section>
 
-<!-- ======================= CLIENTS ======================= -->
-<section class="section" id="clients">
-  <div class="wrap">
-    <p class="section-kicker">05 — In production</p>
-    <h2 class="section-title">Client deployments</h2>
-    <p class="section-intro">
-      Hospitals and diagnostic centres running the E-Medical software I help build and support.
-      Each name links to its repository under the company organisation.
-    </p>
+<!-- ============================ CLIENTS ============================ -->
+<section class="band" id="clients">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag"><span class="n">05</span>In production</p>
+      <h2>Running in these hospitals</h2>
+      <p class="band-sub">Every name links to its repository under the company organisation.</p>
+    </header>
 
     <ul class="clients reveal">
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/AfrozaHospital_Manikgonj" target="_blank" rel="noopener">Afroza Hospital</a><span>Manikgonj</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/SylhetRedCrescentHospital" target="_blank" rel="noopener">Sylhet Red Crescent Hospital</a><span>Sylhet</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/AlRafiHospitalBulta" target="_blank" rel="noopener">Al-Rafi Hospital</a><span>Bulta</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/JharnaClinicHospital_Jessore" target="_blank" rel="noopener">Jharna Clinic &amp; Hospital</a><span>Jessore</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/RangpurNewbornChildMother_NEW_Rangpur" target="_blank" rel="noopener">Newborn, Child &amp; Mother Hospital</a><span>Rangpur</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/NRDS_NoaKhali" target="_blank" rel="noopener">NRDS</a><span>Noakhali</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/NiramoyHospital_Madaripur" target="_blank" rel="noopener">Niramoy Hospital</a><span>Madaripur</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/MoutAdoraSylhet" target="_blank" rel="noopener">Mount Adora Hospital</a><span>Sylhet</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/MadhumatiHospitalComilla" target="_blank" rel="noopener">Madhumati Hospital</a><span>Comilla</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/UniqueHospital_Madonpur_Narayanganj" target="_blank" rel="noopener">Unique Hospital</a><span>Narayanganj</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/MonotomoGolpoMedicalServices_Dhaka" target="_blank" rel="noopener">Monotomo Golpo Medical Services</a><span>Dhaka</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/CureMedicalServices_Shahporan" target="_blank" rel="noopener">Cure Medical Services</a><span>Shahporan</span></li>
-      <li><a href="https://github.com/E-Medical-Solution-Ltd/LifeLineMB_New" target="_blank" rel="noopener">LifeLine MB</a><span>&mdash;</span></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/AfrozaHospital_Manikgonj" target="_blank" rel="noopener"><span class="c-name">Afroza Hospital</span><span class="c-loc">Manikgonj</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/SylhetRedCrescentHospital" target="_blank" rel="noopener"><span class="c-name">Sylhet Red Crescent Hospital</span><span class="c-loc">Sylhet</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/AlRafiHospitalBulta" target="_blank" rel="noopener"><span class="c-name">Al-Rafi Hospital</span><span class="c-loc">Bulta</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/JharnaClinicHospital_Jessore" target="_blank" rel="noopener"><span class="c-name">Jharna Clinic &amp; Hospital</span><span class="c-loc">Jessore</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/RangpurNewbornChildMother_NEW_Rangpur" target="_blank" rel="noopener"><span class="c-name">Newborn, Child &amp; Mother Hospital</span><span class="c-loc">Rangpur</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/NRDS_NoaKhali" target="_blank" rel="noopener"><span class="c-name">NRDS</span><span class="c-loc">Noakhali</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/NiramoyHospital_Madaripur" target="_blank" rel="noopener"><span class="c-name">Niramoy Hospital</span><span class="c-loc">Madaripur</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/MoutAdoraSylhet" target="_blank" rel="noopener"><span class="c-name">Mount Adora Hospital</span><span class="c-loc">Sylhet</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/MadhumatiHospitalComilla" target="_blank" rel="noopener"><span class="c-name">Madhumati Hospital</span><span class="c-loc">Comilla</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/UniqueHospital_Madonpur_Narayanganj" target="_blank" rel="noopener"><span class="c-name">Unique Hospital</span><span class="c-loc">Narayanganj</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/MonotomoGolpoMedicalServices_Dhaka" target="_blank" rel="noopener"><span class="c-name">Monotomo Golpo Medical Services</span><span class="c-loc">Dhaka</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/CureMedicalServices_Shahporan" target="_blank" rel="noopener"><span class="c-name">Cure Medical Services</span><span class="c-loc">Shahporan</span></a></li>
+      <li><a href="https://github.com/E-Medical-Solution-Ltd/LifeLineMB_New" target="_blank" rel="noopener"><span class="c-name">LifeLine MB</span><span class="c-loc">—</span></a></li>
     </ul>
 
-    <p class="note">
-      These are <strong>private company repositories</strong> — you will see a “not found” page
-      unless you have been granted access. Access can be arranged on request.
+    <p class="notice">
+      <strong>Private repositories.</strong> These belong to the company, so you’ll see a
+      “not found” page without access — it can be arranged on request.
     </p>
   </div>
 </section>
 
-<!-- ======================= EDUCATION ======================= -->
-<section class="section section-alt" id="education">
-  <div class="wrap">
-    <p class="section-kicker">06 — Background</p>
-    <h2 class="section-title">Education &amp; training</h2>
+<!-- ============================ CONTACT ============================ -->
+<section class="band contact" id="contact">
+  <div class="shell">
+    <header class="band-head">
+      <p class="tag tag-light"><span class="n">06</span>Contact</p>
+      <h2 class="h-light">Let’s build something</h2>
+      <p class="band-sub sub-light">
+        Open to software development roles in C#&nbsp;.NET, ASP.NET&nbsp;Core and MS&nbsp;SQL&nbsp;Server.
+        Email reaches me fastest.
+      </p>
+    </header>
 
-    <div class="two-col">
-      <div class="reveal">
-        <h3 class="col-head">Education</h3>
+    <a class="mailto" href="mailto:asikatm2@gmail.com">
+      asikatm2@gmail.com
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+    </a>
 
-        <div class="entry">
-          <h4>Diploma in Engineering</h4>
-          <p class="entry-org">Kurigram Polytechnic Institute, Kurigram</p>
-          <p class="entry-meta">2019 — 2023 · CGPA 3.00 / 4.00 · Completed</p>
-        </div>
-
-        <div class="entry">
-          <h4>Secondary School Certificate (SSC)</h4>
-          <p class="entry-org">Chaperhat Technical &amp; B.M. College</p>
-          <p class="entry-meta">2017 — 2019 · Science · GPA 4.57 / 5.00</p>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <h3 class="col-head">Professional courses</h3>
-
-        <div class="entry">
-          <h4>Web Application Development using ASP.NET</h4>
-          <p class="entry-org">IsDB-BISEW IT Scholarship Programme</p>
-          <p class="entry-meta">September 2024 — April 2025</p>
-        </div>
-
-        <div class="entry">
-          <h4>Web Design and Development</h4>
-          <p class="entry-org">Creative IT Institute, Uttara, Dhaka</p>
-          <p class="entry-meta">August 2023 — November 2023</p>
-        </div>
-
-        <div class="entry">
-          <h4>Languages</h4>
-          <p class="entry-meta">Bangla — native · English — professional working proficiency</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= CONTACT ======================= -->
-<section class="section contact" id="contact">
-  <div class="wrap">
-    <p class="section-kicker section-kicker-light">07 — Contact</p>
-    <h2 class="section-title section-title-light">Let’s talk</h2>
-    <p class="contact-lede">
-      Open to software development roles working with C#&nbsp;.NET, ASP.NET&nbsp;Core and MS SQL Server.
-      The quickest way to reach me is email.
-    </p>
-
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:asikatm2@gmail.com">
-        <span class="cc-label">Email</span>
-        <span class="cc-value">asikatm2@gmail.com</span>
-      </a>
-      <a class="contact-card" href="tel:+8801781028835">
-        <span class="cc-label">Phone</span>
-        <span class="cc-value">+880 1781 028835</span>
-      </a>
-      <a class="contact-card" href="https://github.com/asikatm" target="_blank" rel="noopener">
-        <span class="cc-label">GitHub</span>
-        <span class="cc-value">github.com/asikatm</span>
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/asikur-rahman-895bba298/" target="_blank" rel="noopener">
-        <span class="cc-label">LinkedIn</span>
-        <span class="cc-value">asikur-rahman</span>
-      </a>
-    </div>
-
-    <p class="contact-foot">Based in Dhaka, Bangladesh · References available on request</p>
+    <ul class="channels">
+      <li><span class="k">Phone</span><a href="tel:+8801781028835">+880 1781 028835</a></li>
+      <li><span class="k">GitHub</span><a href="https://github.com/asikatm" target="_blank" rel="noopener">github.com/asikatm</a></li>
+      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/asikur-rahman-895bba298/" target="_blank" rel="noopener">asikur-rahman</a></li>
+      <li><span class="k">Location</span><span class="plain">Dhaka, Bangladesh</span></li>
+    </ul>
   </div>
 </section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <p>&copy; <span id="year">2026</span> Md. Asikur Rahman</p>
-    <a href="#top" class="to-top">Back to top &uarr;</a>
+<footer class="footer">
+  <div class="shell footer-in">
+    <p>© <span id="year">2026</span> Md. Asikur Rahman · References available on request</p>
+    <a href="#top" class="up">Back to top <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
   </div>
 </footer>
 

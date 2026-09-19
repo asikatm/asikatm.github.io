@@ -36,14 +36,22 @@ referees' phone numbers are their data, not yours to publish.
 
 | What | Where |
 |---|---|
-| Profile text, job bullets | `index.html` — `#about`, `#experience` |
-| A new project card | `index.html` — copy an `<article class="project reveal">` block inside `#projects` |
+| Profile text, job bullets | `index.html` — `#about`, `#work` |
+| A new project card | `index.html` — copy an `<a class="work reveal">` block inside `#projects` |
 | A new client hospital | `index.html` — add an `<li>` inside `<ul class="clients">` |
-| Colours / fonts | `assets/css/style.css` — the `:root` block at the very top |
+| Colours / fonts | `assets/css/style.css` — the `:root` blocks at the very top |
 | Replace the CV | drop a new PDF in `assets/files/` using the same filename |
 
-The stat numbers in `#about` (13+, 7, 40+) are written by hand — remember to bump
-them when the client count or project count changes.
+The stat numbers in the hero (13+, 7, 40+) are written by hand — remember to bump
+them when the client count or project count changes. Project cards are numbered
+by hand too (`work-no`).
+
+## Light and dark
+
+The page ships both themes. It follows the visitor's system setting, and the
+sun/moon button in the header overrides that choice for them (saved in
+`localStorage`). Both palettes live in `:root` and `:root[data-theme="dark"]` at
+the top of `style.css` — change a colour once there and it updates everywhere.
 
 ## Publish it free on GitHub Pages
 
