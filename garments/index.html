@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Garments Showroom — শাড়ি কালেকশন</title>
+  <meta name="description" content="জামদানি, এমব্রয়ডারি, ডিজিটাল প্রিন্ট শাড়ি — অর্ডার করুন, টাকা দিন হাতে পেয়ে। ক্যাশ অন ডেলিভারি।" />
+  <meta property="og:title" content="Garments Showroom — শাড়ি কালেকশন" />
+  <meta property="og:description" content="পছন্দের শাড়ি অর্ডার করুন, টাকা দিন হাতে পেয়ে। হোম ডেলিভারি · ক্যাশ অন ডেলিভারি।" />
+  <meta name="theme-color" content="#ec1e63" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec1e63'/%3E%3Cpath d='M20 26h24l-2 24H22z' fill='%23fff'/%3E%3Cpath d='M26 26v-4a6 6 0 0 1 12 0v4' stroke='%23fff' stroke-width='4' fill='none'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;800&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+  <header class="hd">
+    <div class="wrap hd-row">
+      <a class="brand" href="#/">
+        <span class="brand-logo"><i class="bi bi-bag-heart-fill"></i></span>
+        <span><span class="brand-name" id="shopName">Garments Showroom</span><span class="brand-tag">Always better quality</span></span>
+      </a>
+      <form class="search" id="searchForm" role="search">
+        <i class="bi bi-search"></i>
+        <input id="searchInput" type="search" placeholder="শাড়ি খুঁজুন… (নাম বা কোড)" aria-label="Search" />
+      </form>
+      <a class="hd-call" id="hdCall" href="#"><i class="bi bi-telephone-fill"></i><span id="hdPhone"></span></a>
+      <a class="cart-btn" href="#/checkout" aria-label="Cart"><i class="bi bi-bag"></i><span class="cart-count" id="cartCount">0</span></a>
+    </div>
+    <nav class="wrap cats" id="catNav" aria-label="Categories"></nav>
+  </header>
+
+  <div class="status-bar" id="statusBar" hidden></div>
+
+  <main id="app" class="wrap" tabindex="-1">
+    <div class="loading"><span class="spinner"></span> লোড হচ্ছে…</div>
+  </main>
+
+  <footer class="ft">
+    <div class="wrap ft-row">
+      <div>
+        <div class="ft-name" id="ftName">Garments Showroom</div>
+        <div class="ft-sub">ক্যাশ অন ডেলিভারি · সারা দেশে হোম ডেলিভারি</div>
+      </div>
+      <div class="ft-contact" id="ftContact"></div>
+      <div class="ft-dev">Developed by <a href="https://asikatm.github.io/" target="_blank" rel="noopener">Md. Asikur Rahman</a></div>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" hidden><i class="bi bi-whatsapp"></i></a>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>
