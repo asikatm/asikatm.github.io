@@ -256,3 +256,26 @@ main { flex: 1; outline: none; }
   .brand-tag { display: none; }
   .pd-actions { grid-template-columns: 1fr; }
 }
+
+/* ---------- Payment (COD / bKash / Nagad) ---------- */
+.pay-options { display: grid; gap: 8px; margin-bottom: 12px; }
+.pay { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; cursor: pointer; background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.pay strong { display: block; }
+.pay small { color: var(--muted); }
+.pay.on { border-color: var(--pink); background: var(--pink-soft); }
+.pay-logo { width: 54px; height: 36px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #fff; font: 800 0.8rem Inter, sans-serif; }
+.pay-logo.cod { background: var(--green); font-size: 1.2rem; }
+.pay-logo.bkash { background: #e2136e; }
+.pay-logo.nagad { background: linear-gradient(135deg, #f7941d, #ec1c24); }
+.pay-box { border: 1px dashed #e2136e; background: #fff5fa; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
+.pay-box.nagad { border-color: #f7941d; background: #fff8f0; }
+.pay-box ol { padding-left: 1.2rem; margin: 0 0 12px; display: grid; gap: 6px; }
+.pay-no { font: 800 1.15rem Inter, sans-serif; letter-spacing: 0.02em; }
+.copy { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 1px 8px; cursor: pointer; font-size: 0.85rem; }
+.pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+.pay-quick { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.pay-quick button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 1px 10px; font-size: 0.82rem; cursor: pointer; }
+.field input.trx { text-transform: uppercase; letter-spacing: 0.06em; font-family: Inter, monospace; }
+.pay-due { margin: 4px 0 8px; }
+.pay-note { color: var(--muted); font-size: 0.88rem; }
+@media (max-width: 479.98px) { .pay-grid { grid-template-columns: 1fr; } }

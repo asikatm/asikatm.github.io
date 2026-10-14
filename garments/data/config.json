@@ -4,5 +4,17 @@
     "phone":  "01581035896",
     "shopName":  "Garments Showroom",
     "deliveryCharge":  0,
-    "updatedAt":  "2026-10-12T23:45:17"
+    "payments":  [
+                     {
+                         "method":  "bKash",
+                         "number":  "01781028835",
+                         "type":  "Personal"
+                     },
+                     {
+                         "method":  "Nagad",
+                         "number":  "01781028835",
+                         "type":  "Personal"
+                     }
+                 ],
+    "updatedAt":  "2026-10-15T00:54:46"
 }

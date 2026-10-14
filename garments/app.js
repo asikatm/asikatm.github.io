@@ -124,7 +124,10 @@
       fetchJson(base + "/api/store/info", 7000).catch(function () { return null; })
     ]).then(function (r) {
       S.products = r[0]; S.categories = r[1];
-      if (r[2]) S.cfg.deliveryCharge = r[2].deliveryCharge;
+      if (r[2]) {
+        S.cfg.deliveryCharge = r[2].deliveryCharge;
+        if (r[2].payments) S.cfg.payments = r[2].payments;
+      }
       S.live = true;
     });
   }
@@ -344,7 +347,72 @@
   function renderCheckout() {
     document.title = "চেকআউট — " + (S.cfg.shopName || "Garments Showroom");
     var form = load("gs.form.v1", { name: "", phone: "", address: "", note: "" });
-    var errors = {}, msg = "", busy = false;
+    // Payment: COD, ba bKash / Nagad e Send Money kore TrxID
+    var pay = { method: "COD", amount: 0, from: "", trx: "" };
+    var payments = (S.cfg.payments || []).filter(function (p) { return p.method === "bKash" || p.method === "Nagad"; });
+    var errors = {}, msg = "", busy = false, copied = false;
+
+    function payOption() { return payments.filter(function (p) { return p.method === pay.method; })[0] || null; }
+
+    function paymentHtml(total) {
+      if (!payments.length) {
+        return '<div class="cod-note"><i class="bi bi-cash-coin"></i><span>ক্যাশ অন ডেলিভারি — পণ্য হাতে পেয়ে টাকা দিন। অর্ডারের পর আমরা ফোন করে কনফার্ম করব।</span></div>';
+      }
+      var opt = payOption();
+      var html = '<h2 style="margin-top:22px">পেমেন্ট</h2><div class="pay-options">' +
+        '<button class="pay ' + (!opt ? "on" : "") + '" data-pay="COD"><span class="pay-logo cod"><i class="bi bi-cash-coin"></i></span>' +
+        "<span><strong>ক্যাশ অন ডেলিভারি</strong><small>পণ্য হাতে পেয়ে টাকা দিন</small></span></button>" +
+        payments.map(function (p) {
+          return '<button class="pay ' + (pay.method === p.method ? "on" : "") + '" data-pay="' + esc(p.method) + '"><span class="pay-logo ' + p.method.toLowerCase() + '">' + esc(p.method) + "</span>" +
+            "<span><strong>" + esc(p.method) + "</strong><small>অগ্রিম / পুরো টাকা পাঠান</small></span></button>";
+        }).join("") + "</div>";
+      if (!opt) {
+        return html + '<div class="cod-note"><i class="bi bi-cash-coin"></i><span>ক্যাশ অন ডেলিভারি — পণ্য হাতে পেয়ে টাকা দিন। অর্ডারের পর আমরা ফোন করে কনফার্ম করব।</span></div>';
+      }
+      var merchant = opt.type === "Merchant";
+      return html + '<div class="pay-box ' + opt.method.toLowerCase() + '"><ol>' +
+        "<li>" + esc(opt.method) + " অ্যাপ বা ডায়াল (" + (opt.method === "bKash" ? "*247#" : "*167#") + ") থেকে <strong>" + (merchant ? "Payment" : "Send Money") + "</strong> করুন</li>" +
+        '<li>নাম্বার: <strong class="pay-no">' + esc(opt.number) + '</strong> <button class="copy" id="copyNo"><i class="bi ' + (copied ? "bi-check2" : "bi-copy") + '"></i> ' + (copied ? "কপি হয়েছে" : "কপি") + "</button>" +
+        "<small> (" + (merchant ? "Merchant" : "Personal") + " নাম্বার)</small></li>" +
+        "<li>যত টাকা পাঠাবেন লিখুন — পুরো " + tk(total) + " অথবা অগ্রিম (বাকি টাকা ক্যাশ অন ডেলিভারি)</li>" +
+        "<li>SMS-এ পাওয়া <strong>Transaction ID (TrxID)</strong> নিচে লিখুন</li></ol>" +
+        '<div class="pay-grid"><div class="field"><label for="p-amount">যত টাকা পাঠিয়েছেন</label><input id="p-amount" type="number" min="1" max="' + total + '" />' +
+        '<div class="pay-quick"><button data-amt="' + total + '">পুরো ' + tk(total) + "</button><button data-amt=\"100\">৳100</button><button data-amt=\"200\">৳200</button><button data-amt=\"500\">৳500</button></div>" +
+        (errors.amount ? '<div class="err">' + errors.amount + "</div>" : "") + "</div>" +
+        '<div class="field"><label for="p-from">যে নাম্বার থেকে পাঠিয়েছেন</label><input id="p-from" type="tel" placeholder="01XXXXXXXXX" />' +
+        (errors.from ? '<div class="err">' + errors.from + "</div>" : "") + "</div></div>" +
+        '<div class="field"><label for="p-trx">Transaction ID (TrxID)</label><input id="p-trx" class="trx" maxlength="20" autocomplete="off" placeholder="যেমন: 9JK7ABCD12" />' +
+        (errors.trx ? '<div class="err">' + errors.trx + "</div>" : "") + "</div>" +
+        (pay.amount > 0 && pay.amount < total ? '<div class="pay-due">ডেলিভারির সময় দিবেন: <strong>' + tk(total - pay.amount) + "</strong></div>" : "") +
+        '<div class="pay-note"><i class="bi bi-shield-check"></i> আমরা ' + esc(opt.method) + "-এ মিলিয়ে দেখে অর্ডার কনফার্ম করব।</div></div>";
+    }
+
+    function wirePayment(total) {
+      $app.querySelectorAll("[data-pay]").forEach(function (b) {
+        b.onclick = function () {
+          pay.method = b.dataset.pay;
+          if (pay.method !== "COD") {
+            if (!pay.amount) pay.amount = total;
+            if (!pay.from) pay.from = form.phone || "";
+          }
+          errors = {}; draw();
+        };
+      });
+      $app.querySelectorAll("[data-amt]").forEach(function (b) { b.onclick = function () { pay.amount = +b.dataset.amt; draw(); }; });
+      var bind = function (id, key, upper) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.value = pay[key] || "";
+        el.oninput = function () { pay[key] = id === "p-amount" ? Number(el.value || 0) : (upper ? el.value.toUpperCase() : el.value); };
+        if (id === "p-amount") el.onchange = function () { draw(); };
+      };
+      bind("p-amount", "amount"); bind("p-from", "from"); bind("p-trx", "trx", true);
+      var copy = document.getElementById("copyNo");
+      if (copy) copy.onclick = function () {
+        var opt = payOption();
+        if (navigator.clipboard && opt) navigator.clipboard.writeText(opt.number).then(function () { copied = true; draw(); }, function () { });
+      };
+    }
 
     function draw() {
       var lines = cartLines();
@@ -361,7 +429,7 @@
         field("phone", "মোবাইল নম্বর", "tel", "tel", "01XXXXXXXXX") +
         field("address", "সম্পূর্ণ ঠিকানা", "textarea", "street-address", "বাড়ি, রোড, এলাকা, জেলা") +
         field("note", "নোট <small>(ঐচ্ছিক)</small>", "textarea", "off", "") +
-        '<div class="cod-note"><i class="bi bi-cash-coin"></i><span>ক্যাশ অন ডেলিভারি — পণ্য হাতে পেয়ে টাকা দিন। অর্ডারের পর আমরা ফোন করে কনফার্ম করব।</span></div>' +
+        paymentHtml(sub + dc) +
         (S.live
           ? '<button class="btn lg full" id="placeOrder"' + (busy ? " disabled" : "") + '><i class="bi bi-check2-circle"></i> ' + (busy ? "অর্ডার হচ্ছে…" : "অর্ডার কনফার্ম করুন (" + tk(sub + dc) + ")") + "</button>" +
             (S.cfg.whatsapp ? '<div class="or">অথবা</div><button class="btn wa full" id="waOrder"><i class="bi bi-whatsapp"></i> WhatsApp-এ অর্ডার পাঠান</button>' : "")
@@ -388,6 +456,7 @@
       $app.querySelectorAll("[data-rm]").forEach(function (b) {
         b.onclick = function () { S.cart = S.cart.filter(function (l) { return l.vid !== +b.dataset.rm; }); saveCart(); draw(); };
       });
+      wirePayment(sub + dc);
       var po = document.getElementById("placeOrder");
       if (po) po.onclick = placeOrder;
       var wa = document.getElementById("waOrder");
@@ -414,7 +483,20 @@
       if ((form.name || "").trim().length < 2) errors.name = "আপনার নাম লিখুন";
       if (!normPhone(form.phone)) errors.phone = "১১ ডিজিটের সঠিক মোবাইল নম্বর লিখুন (01XXXXXXXXX)";
       if ((form.address || "").trim().length < 5) errors.address = "সম্পূর্ণ ঠিকানা লিখুন";
+      if (payOption()) {
+        var total = cartLines().reduce(function (a, l) { return a + l.total; }, 0) + Number(S.cfg.deliveryCharge || 0);
+        if (!(pay.amount >= 1 && pay.amount <= total)) errors.amount = "৳১ থেকে " + tk(total) + " এর মধ্যে লিখুন";
+        if (!normPhone(pay.from)) errors.from = "যে নাম্বার থেকে পাঠিয়েছেন সেটা লিখুন";
+        if (!/^[A-Z0-9]{6,20}$/.test((pay.trx || "").trim().toUpperCase())) errors.trx = "SMS-এ পাওয়া TrxID লিখুন";
+      }
+      if (Object.keys(errors).length) msg = "লাল চিহ্নিত ঘরগুলো ঠিক করুন।";
       return Object.keys(errors).length === 0;
+    }
+
+    function payText() {
+      var opt = payOption();
+      return opt ? "\n\nপেমেন্ট: " + opt.method + " " + tk(pay.amount) + "\nপাঠিয়েছি: " + normPhone(pay.from) + "\nTrxID: " + pay.trx.trim().toUpperCase()
+        : "\n\n(ক্যাশ অন ডেলিভারি)";
     }
 
     function placeOrder() {
@@ -425,6 +507,13 @@
         name: form.name.trim(), phone: normPhone(form.phone), address: form.address.trim(), note: (form.note || "").trim() || null,
         items: S.cart.map(function (l) { return { variantId: l.vid, quantity: l.qty }; })
       };
+      var opt = payOption();
+      if (opt) {
+        body.paymentMethod = opt.method;
+        body.paymentAmount = pay.amount;
+        body.paymentFrom = normPhone(pay.from);
+        body.paymentTrxId = pay.trx.trim().toUpperCase();
+      }
       fetchJson(S.cfg.apiBase.replace(/\/$/, "") + "/api/store/orders", 15000, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
       }).then(function (res) {
@@ -451,7 +540,7 @@
         }).join("\n") +
         "\n\nমোট: " + tk(sub + Number(S.cfg.deliveryCharge || 0)) +
         "\n\nনাম: " + form.name.trim() + "\nমোবাইল: " + normPhone(form.phone) + "\nঠিকানা: " + form.address.trim() +
-        (form.note && form.note.trim() ? "\nনোট: " + form.note.trim() : "") + "\n\n(ক্যাশ অন ডেলিভারি)";
+        (form.note && form.note.trim() ? "\nনোট: " + form.note.trim() : "") + payText();
       window.open(waLink(text), "_blank", "noopener");
       store(LAST_KEY, { orderNo: "", total: sub, phone: normPhone(form.phone), via: "whatsapp" });
       S.cart = []; saveCart();
